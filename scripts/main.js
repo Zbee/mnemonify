@@ -11,15 +11,15 @@ function getMnem(letters, callback) {
 }
 
 function scissors() {
-	var string = document.getElementById('input').value.split(" ");
+	var string = document.getElementById('input').value.replace("  ", " ").split(" ");
 	var composed = "";
 
 	for (var i = 0; i < string.length; i++) {
-		if (i != 0) composed += " ";
+    composed += " ";
 		composed += string[i].charAt(0);
 	}
 
-	document.getElementById('output').value = composed;
+	document.getElementById('output').value = composed.substring(1);
   
   getMnem(composed, function(response) {
     document.getElementById('generate').value = response.replace(/["|\.]/g, '');

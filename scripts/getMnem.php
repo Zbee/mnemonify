@@ -5,8 +5,9 @@ $words = "";
 
 $letters = explode(" ", $_GET["m"]);
 foreach ($letters as $letter) {
+  if ($letter == "" || empty($letter)) continue;
   shuffle($dictionary);
   $words .= ucfirst(current(array_filter($dictionary, create_function('$a', 'return $a[0] == "'. $letter . '";')))) . " ";
 }
 
-echo json_encode($words);
+echo json_encode(substr($words, 1));
